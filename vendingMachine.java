@@ -12,7 +12,6 @@ public class vendingMachine {
         {
             System.out.println("Enter coin(ONE, TWO, FIVE, TEN) : ");
             Coin coin = Coin.valueOf(sc.next().toUpperCase());
-
             int value = switch(coin)
             {
                 case ONE -> 1;

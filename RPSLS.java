@@ -1,6 +1,4 @@
-
 import java.util.*;
-
 public class RPSLS {
     enum Move {
         ROCK, PAPER, SCISSORS, LIZARD, SPOCK
