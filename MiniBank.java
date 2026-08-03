@@ -1,5 +1,94 @@
-
 import java.util.Scanner;
+
+class Customer {
+    private String name;
+    private String email;
+    private String mobile;
+    private final String customerId;
+
+    private static long customerCounter = 101;
+
+    private static String generateCustomerId() {
+        return "CUST" + customerCounter++;
+    }
+
+    public Customer(String name, String email, String mobile) {
+        this.name = name;
+        this.email = email;
+        this.mobile = mobile;
+        this.customerId = generateCustomerId();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+}
+
+class Account {
+    private final String accountNumber;
+    private String ownerName;
+    private long balance;
+    private boolean active;
+
+    private static int accountCounter = 1;
+
+    private static String generateAccountNumber() {
+        return String.format("AC%04d", accountCounter++);
+    }
+
+    public Account(String ownerName, long balance) {
+        this.accountNumber = generateAccountNumber();
+        this.ownerName = ownerName;
+        this.balance = balance;
+        this.active = true;
+    }
+
+    public Account(String ownerName) {
+        this(ownerName, 0);
+    }
+
+    public void deposit(long amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    public boolean withdraw(long amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+}
 
 public class MiniBank {
 
@@ -18,7 +107,38 @@ public class MiniBank {
         Scanner sc = new Scanner(System.in);
         BankInfo bank = new BankInfo("MiniBank", "Main Branch");
 
-        System.out.println("================================");
+        Customer c1 = new Customer("Vaidehi", "vaidehi@gmail.com", "1234567890");
+
+        Account[] accounts = {
+                new Account(c1.getName(), 5000),
+                new Account("Riya"),
+                new Account("Rahul", 10000)
+        };
+
+        System.out.println("Customer Details");
+        System.out.println("ID: " + c1.getCustomerId());
+        System.out.println("Name: " + c1.getName());
+        System.out.println("Email: " + c1.getEmail());
+        System.out.println("Mobile: " + c1.getMobile());
+
+        System.out.println("\nTransactions");
+
+        accounts[0].deposit(1000);
+        accounts[1].deposit(3000);
+
+        System.out.println("Withdraw ₹2000 from Account 1: " + accounts[0].withdraw(2000));
+        System.out.println("Withdraw ₹4000 from Account 3: " + accounts[2].withdraw(4000));
+
+        System.out.println("\nAccount Details");
+        for (Account acc : accounts) {
+            System.out.println(
+                    acc.getAccountNumber() + " | " +
+                    acc.getOwnerName() + " | Balance = ₹" +
+                    acc.getBalance()
+            );
+        }
+
+        System.out.println("\n================================");
         System.out.println(bank.name() + " - " + bank.branch());
         System.out.println("================================");
 
