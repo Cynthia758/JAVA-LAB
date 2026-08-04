@@ -1,3 +1,4 @@
+package PRAC1;
 import java.util.Scanner;
 public class TollBooth {
     record Vehicle(String number, String type){}
@@ -28,7 +29,6 @@ public class TollBooth {
                 case "bike" -> bikec++;
                 case "car" -> carc++;
                 case "truck" -> truckc++;
-
             }
         }
         System.out.println("Total toll : "+total);

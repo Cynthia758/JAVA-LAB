@@ -1,31 +1,32 @@
-public class Driver {
-        public static void main(String[] args)
-    {
+class Driver {
+    public static void main(String[] args) {
+
         Point[] points = {
-            new Point(2,3),
-            new Point(1,2),
-            new Point(2,3),
-            new Point(4,5),
-            new Point(7,1),
-            new Point(2,3)
+            new Point(1, 2),
+            new Point(3, 4),
+            new Point(1, 2),
+            new Point(5, 6),
+            new Point(3, 4)
         };
-        int count=0;
-        for(int i=0;i<points.length;i++)
-        {
-            boolean found = false;
-            for(int j=0;j<i;j++)
-            {
-                if(points[i].equals(points[j]))
-                {
-                    found =true;
+
+        int distinctCount = 0;
+
+        for (int i = 0; i < points.length; i++) {
+            boolean alreadyExists = false;
+
+            for (int j = 0; j < i; j++) {
+                if (points[i].equals(points[j])) {
+                    alreadyExists = true;
                     break;
                 }
             }
-        
-            if(!found)
-                count++;
+
+            if (!alreadyExists) {
+                distinctCount++;
+            }
         }
-        System.out.println("Distinct: " + count);
+
+        System.out.println("5 points with 2 repeats");
+        System.out.println("Distinct: " + distinctCount);
     }
 }
-
