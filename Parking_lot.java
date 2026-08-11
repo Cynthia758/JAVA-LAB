@@ -1,4 +1,4 @@
-package PRAC2;
+
 public class Parking_lot{
     private int two_wheelers=0,four_wheelers=0;
     private final int two_cap,four_cap;

@@ -1,4 +1,4 @@
-package PRAC1;
+
 import java.util.Scanner;
 public class vendingMachine {
     enum Coin {

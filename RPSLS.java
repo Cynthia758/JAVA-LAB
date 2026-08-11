@@ -1,4 +1,4 @@
-package PRAC1;
+
 import java.util.*;
 public class RPSLS {
     enum Move {

@@ -1,4 +1,3 @@
-package PRAC2;
 public class Cinema_show{
     private String title;
     private int seatsAvailable;
