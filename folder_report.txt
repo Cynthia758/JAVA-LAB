@@ -1,0 +1,13 @@
+FOLDER TREE REPORT
+Root Directory: C:\Users\parma\OneDrive\Documents\OOPs-sem3\testfolder
+
+Name: file1.txt
+Path: file1.txt
+Size: 11 bytes
+Modified: 2026-10-14T08:12:53.453Z
+
+Name: file2.txt
+Path: subfolder\file2.txt
+Size: 8 bytes
+Modified: 2026-10-14T08:12:53.454Z
+

@@ -1,10 +1,8 @@
-
 import java.util.*;
 public class RPSLS {
     enum Move {
         ROCK, PAPER, SCISSORS, LIZARD, SPOCK
     }
-
     static int winner(Move a, Move b) {
         if (a == b) return 0;
 
@@ -16,26 +14,19 @@ public class RPSLS {
             case SPOCK -> (b == Move.SCISSORS || b == Move.ROCK) ? 1 : -1;
         };
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
-
         int playerScore = 0;
         int computerScore = 0;
-
         System.out.println("Moves: ROCK, PAPER, SCISSORS, LIZARD, SPOCK");
-
         for (int i = 1; i <= 5; i++) {
             System.out.print("Round " + i + " - Enter your move: ");
             Move player = Move.valueOf(sc.next().toUpperCase());
             Move computer = Move.values()[rand.nextInt(5)];
-
             System.out.println("Player: " + player);
             System.out.println("Computer: " + computer);
-
             int result = winner(player, computer);
-
             if (result == 1) {
                 System.out.println("You win this round!");
                 playerScore++;
@@ -45,21 +36,17 @@ public class RPSLS {
             } else {
                 System.out.println("Round is a tie!");
             }
-
             System.out.println();
         }
-
         System.out.println("Final Score");
         System.out.println("You: " + playerScore);
         System.out.println("Computer: " + computerScore);
-
         if (playerScore > computerScore)
             System.out.println("You win " + playerScore + "-" + computerScore);
         else if (computerScore > playerScore)
             System.out.println("Computer wins " + computerScore + "-" + playerScore);
         else
             System.out.println("Match Draw " + playerScore + "-" + computerScore);
-
         sc.close();
     }
 }

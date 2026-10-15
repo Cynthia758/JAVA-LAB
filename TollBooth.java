@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 public class TollBooth {
     record Vehicle(String number, String type){}

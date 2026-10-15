@@ -1,0 +1,3 @@
+INFO Task completed
+INFO Application closed
+ERROR Network failure
