@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "."
+    ],
+    "java.project.referencedLibraries": [
+        "c:\\Users\\parma\\Downloads\\junit-platform-console-standalone-1.13.1.jar"
+    ]
+}

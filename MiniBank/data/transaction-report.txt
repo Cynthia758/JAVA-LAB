@@ -1,0 +1,6 @@
+MiniBank Transaction Report
+===========================
+Transactions counted: 2
+Total deposits: Rs. 1000
+Total withdrawals: Rs. 200
+Net movement: Rs. 800
