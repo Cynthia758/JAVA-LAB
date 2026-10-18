@@ -1,4 +1,3 @@
-
 package MiniBank.src.model;
 
 public class CurrentAccount extends Account {

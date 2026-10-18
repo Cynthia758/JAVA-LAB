@@ -7,10 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public final class TransactionLog {
-
     private TransactionLog() {
     }
-
     public static void append(Path file, String transaction)
             throws IOException {
         Path parent = file.toAbsolutePath().getParent();
@@ -18,7 +16,6 @@ public final class TransactionLog {
         if (parent != null) {
             Files.createDirectories(parent);
         }
-
         Files.writeString(
             file,
             transaction + System.lineSeparator(),
@@ -27,10 +24,8 @@ public final class TransactionLog {
             StandardOpenOption.APPEND
         );
     }
-
     public static void main(String[] args) {
         Path logFile = Path.of("MiniBank", "logs", "transactions.log");
-
         try {
             append(logFile, "DEPOSIT AC0001 1000");
             append(logFile, "WITHDRAW AC0001 200");

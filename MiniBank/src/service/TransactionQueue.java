@@ -1,4 +1,3 @@
-
 package MiniBank.src.service;
 
 import java.util.LinkedList;
@@ -16,7 +15,6 @@ public class TransactionQueue<T> {
         }
         this.capacity = capacity;
     }
-
     public synchronized void produce(T item) throws InterruptedException {
         while (queue.size() == capacity) {
             wait();
@@ -26,12 +24,10 @@ public class TransactionQueue<T> {
         System.out.println("Produced: " + item);
         notifyAll();
     }
-
     public synchronized T consume() throws InterruptedException {
         while (queue.isEmpty()) {
             wait();
         }
-
         T item = queue.remove();
         System.out.println("Consumed: " + item);
         notifyAll();

@@ -22,4 +22,3 @@ public class SavingsAccount extends Account {
         return Math.round(getBalance() * interestRate());
     }
 }
-

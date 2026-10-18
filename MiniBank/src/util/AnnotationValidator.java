@@ -1,30 +1,23 @@
-
 package MiniBank.src.util;
 
 import java.lang.reflect.Field;
-
 import MiniBank.src.model.annotation.Id;
 import MiniBank.src.model.annotation.Positive;
 import MiniBank.src.model.annotation.MaxLength;
 
 public final class AnnotationValidator {
-
     private AnnotationValidator() {
     }
-
     public static void validate(Object object) {
         if (object == null) {
             throw new IllegalArgumentException("Object cannot be null");
         }
-
         Class<?> current = object.getClass();
-
         while (current != null && current != Object.class) {
             for (Field field : current.getDeclaredFields()) {
                 try {
                     field.setAccessible(true);
                     Object value = field.get(object);
-
                     if (field.isAnnotationPresent(Id.class)) {
                         if (value == null || value.toString().isBlank()) {
                             throw new IllegalArgumentException(
@@ -32,11 +25,9 @@ public final class AnnotationValidator {
                             );
                         }
                     }
-
                     if (field.isAnnotationPresent(Positive.class)) {
                         Positive annotation =
                             field.getAnnotation(Positive.class);
-
                         if (!(value instanceof Number)
                                 || ((Number) value).longValue() <= 0) {
                             throw new IllegalArgumentException(
@@ -44,11 +35,9 @@ public final class AnnotationValidator {
                             );
                         }
                     }
-
                     if (field.isAnnotationPresent(MaxLength.class)) {
                         MaxLength annotation =
                             field.getAnnotation(MaxLength.class);
-
                         if (value != null
                                 && value.toString().length() > annotation.value()) {
                             throw new IllegalArgumentException(
@@ -63,7 +52,6 @@ public final class AnnotationValidator {
                     );
                 }
             }
-
             current = current.getSuperclass();
         }
     }

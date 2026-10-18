@@ -1,9 +1,7 @@
-
 package MiniBank.src.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 import MiniBank.src.exception.InvalidAmountException;
 import MiniBank.src.exception.InsufficientFundsException;
 import MiniBank.src.model.annotation.Id;
@@ -15,29 +13,24 @@ public abstract class Account implements Comparable<Account>, Serializable {
 
     @Id
     private final String accountNumber;
-
     private final String ownerName;
 
     @Positive
     private long balance;
-
     private boolean active;
 
     protected Account(String ownerName, long openingBalance) {
         if (ownerName == null || ownerName.isBlank()) {
             throw new IllegalArgumentException("Owner name cannot be empty");
         }
-
         if (openingBalance < 0) {
             throw new IllegalArgumentException(
                 "Opening balance cannot be negative"
             );
         }
-
         synchronized (Account.class) {
             this.accountNumber = String.format("AC%04d", nextNumber++);
         }
-
         this.ownerName = ownerName;
         this.balance = openingBalance;
         this.active = true;
@@ -45,11 +38,9 @@ public abstract class Account implements Comparable<Account>, Serializable {
 
     public static synchronized void updateNextNumber(Account[] accounts) {
         int maxNumber = 0;
-
         for (Account account : accounts) {
             if (account != null) {
                 String number = account.getAccountNumber();
-
                 if (number != null && number.startsWith("AC")) {
                     try {
                         int value = Integer.parseInt(number.substring(2));
@@ -59,14 +50,10 @@ public abstract class Account implements Comparable<Account>, Serializable {
                 }
             }
         }
-
         nextNumber = maxNumber + 1;
     }
-
     public abstract double interestRate();
-
     public abstract boolean canWithdraw(long amount);
-
     public synchronized void deposit(long amount)
             throws InvalidAmountException {
         if (amount <= 0) {
@@ -81,7 +68,6 @@ public abstract class Account implements Comparable<Account>, Serializable {
             throw new InvalidAmountException("Balance limit exceeded");
         }
     }
-
     public synchronized boolean withdraw(long amount)
             throws InvalidAmountException, InsufficientFundsException {
         if (amount <= 0) {
@@ -151,7 +137,6 @@ public abstract class Account implements Comparable<Account>, Serializable {
             }
         }
     }
-
     public synchronized long getBalance() {
         return balance;
     }
@@ -171,12 +156,10 @@ public abstract class Account implements Comparable<Account>, Serializable {
     public synchronized void setActive(boolean active) {
         this.active = active;
     }
-
     @Override
     public int compareTo(Account other) {
         return Long.compare(getBalance(), other.getBalance());
     }
-
     @Override
     public String toString() {
         return accountNumber + " | " + ownerName
@@ -192,10 +175,8 @@ public abstract class Account implements Comparable<Account>, Serializable {
         if (!(obj instanceof Account other)) {
             return false;
         }
-
         return accountNumber.equals(other.accountNumber);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(accountNumber);
